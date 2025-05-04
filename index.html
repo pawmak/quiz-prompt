@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz Prompt Engineering</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        #quizContainer { margin-top: 20px; }
+        button { margin: 5px; padding: 10px 15px; }
+        label { display: block; margin-bottom: 5px; }
+        #instruction { background-color: #fff3cd; border: 1px solid #ffeeba; padding: 10px; margin-bottom: 15px; }
+    </style>
+</head>
+<body>
+    <div id="instruction">
+        <strong>Uwaga:</strong> Jeśli otwierasz ten plik na iPhone w aplikacji Pliki, kliknij ikonę udostępniania i wybierz „Otwórz w Safari”.
+    </div>
+
+    <h1 id="title">Quiz Prompt Engineering</h1>
+    <label for="languageSelect">Wybierz język / Select language:</label>
+    <select id="languageSelect" onchange="changeLanguage()">
+        <option value="pl">PL</option>
+        <option value="en">EN</option>
+    </select>
+
+    <div id="quizContainer"></div>
+    <button onclick="checkAnswers()">Sprawdź odpowiedzi / Check answers</button>
+    <p id="result"></p>
+
+    <script>
+    const questions = {
+        pl: [
+            { question: "Który prompt służy do uzyskiwania faktów?",
+              options: ["Fact-finding", "Poetry", "Code generation"], answer: "Fact-finding" },
+            { question: "Co oznacza 'brainstorming prompt'?",
+              options: ["Burzę mózgów", "Poprawki gramatyczne", "Symulację rozmowy"], answer: "Burzę mózgów" }
+        ],
+        en: [
+            { question: "Which prompt is used to retrieve facts?",
+              options: ["Fact-finding", "Poetry", "Code generation"], answer: "Fact-finding" },
+            { question: "What does 'brainstorming prompt' mean?",
+              options: ["Brainstorming", "Grammar correction", "Conversation simulation"], answer: "Brainstorming" }
+        ]
+    };
+
+    let currentLang = 'pl';
+
+    document.addEventListener('DOMContentLoaded', function() {
+        loadQuestions();
+    });
+
+    function changeLanguage() {
+        currentLang = document.getElementById('languageSelect').value;
+        loadQuestions();
+    }
+
+    function loadQuestions() {
+        const container = document.getElementById('quizContainer');
+        container.innerHTML = '';
+        questions[currentLang].forEach((q, index) => {
+            const qDiv = document.createElement('div');
+            qDiv.innerHTML = `<p>${q.question}</p>` + q.options.map(opt =>
+                `<label><input type="radio" name="q${index}" value="${opt}"> ${opt}</label>`
+            ).join('');
+            container.appendChild(qDiv);
+        });
+    }
+
+    function checkAnswers() {
+        let score = 0;
+        questions[currentLang].forEach((q, index) => {
+            const selected = document.querySelector(`input[name="q${index}"]:checked`);
+            if (selected && selected.value === q.answer) score++;
+        });
+        const resultText = currentLang === 'pl'
+            ? `Twój wynik: ${score}/${questions[currentLang].length}`
+            : `Your score: ${score}/${questions[currentLang].length}`;
+        document.getElementById('result').innerText = resultText;
+    }
+    </script>
+</body>
+</html>
