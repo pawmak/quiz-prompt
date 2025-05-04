@@ -9,14 +9,9 @@
         #quizContainer { margin-top: 20px; }
         button { margin: 5px; padding: 10px 15px; }
         label { display: block; margin-bottom: 5px; }
-        #instruction { background-color: #fff3cd; border: 1px solid #ffeeba; padding: 10px; margin-bottom: 15px; }
     </style>
 </head>
 <body>
-    <div id="instruction">
-        <strong>Uwaga:</strong> Jeśli otwierasz ten plik na iPhone w aplikacji Pliki, kliknij ikonę udostępniania i wybierz „Otwórz w Safari”.
-    </div>
-
     <h1 id="title">Quiz Prompt Engineering</h1>
     <label for="languageSelect">Wybierz język / Select language:</label>
     <select id="languageSelect" onchange="changeLanguage()">
@@ -31,16 +26,32 @@
     <script>
     const questions = {
         pl: [
-            { question: "Który prompt służy do uzyskiwania faktów?",
-              options: ["Fact-finding", "Poetry", "Code generation"], answer: "Fact-finding" },
-            { question: "Co oznacza 'brainstorming prompt'?",
-              options: ["Burzę mózgów", "Poprawki gramatyczne", "Symulację rozmowy"], answer: "Burzę mózgów" }
+            { question: "Który prompt służy do uzyskiwania faktów?", options: ["Fact-finding", "Poetry", "Code generation"], answer: "Fact-finding" },
+            { question: "Co oznacza 'brainstorming prompt'?", options: ["Burzę mózgów", "Poprawki gramatyczne", "Symulację rozmowy"], answer: "Burzę mózgów" },
+            { question: "Jakiego promptu użyjesz do poprawienia gramatyki?", options: ["Poprawki gramatyczne", "Tworzenie kodu", "Burza mózgów"], answer: "Poprawki gramatyczne" },
+            { question: "Co oznacza 'simulation prompt'?", options: ["Symulacja rozmowy", "Pisanie kodu", "Opowiadanie bajek"], answer: "Symulacja rozmowy" },
+            { question: "Który prompt pomoże napisać wiersz?", options: ["Poetry prompt", "Fact-finding", "Code generation"], answer: "Poetry prompt" },
+            { question: "Który prompt pomaga generować kod?", options: ["Code generation", "Brainstorming", "Translation"], answer: "Code generation" },
+            { question: "Który prompt umożliwia analizę przyczynowo-skutkową?", options: ["Analytical prompt", "Storytelling", "Summarization"], answer: "Analytical prompt" },
+            { question: "Który prompt pomaga w podjęciu decyzji?", options: ["Decisional prompt", "Poetry prompt", "Simulation prompt"], answer: "Decisional prompt" },
+            { question: "Jakiego promptu użyjesz do tłumaczenia tekstu?", options: ["Translation prompt", "Code generation", "Summarization"], answer: "Translation prompt" },
+            { question: "Który prompt opisuje algorytm?", options: ["Algorithm prompt", "Poetry prompt", "Fact-finding"], answer: "Algorithm prompt" },
+            { question: "Który prompt generuje streszczenia tekstu?", options: ["Summarization prompt", "Translation prompt", "Simulation prompt"], answer: "Summarization prompt" },
+            { question: "Który prompt pomaga wyjaśniać pojęcia?", options: ["Explanation prompt", "Brainstorming", "Code generation"], answer: "Explanation prompt" }
         ],
         en: [
-            { question: "Which prompt is used to retrieve facts?",
-              options: ["Fact-finding", "Poetry", "Code generation"], answer: "Fact-finding" },
-            { question: "What does 'brainstorming prompt' mean?",
-              options: ["Brainstorming", "Grammar correction", "Conversation simulation"], answer: "Brainstorming" }
+            { question: "Which prompt is used to retrieve facts?", options: ["Fact-finding", "Poetry", "Code generation"], answer: "Fact-finding" },
+            { question: "What does 'brainstorming prompt' mean?", options: ["Brainstorming", "Grammar correction", "Conversation simulation"], answer: "Brainstorming" },
+            { question: "Which prompt helps improve grammar?", options: ["Grammar correction", "Code generation", "Brainstorming"], answer: "Grammar correction" },
+            { question: "What does 'simulation prompt' mean?", options: ["Conversation simulation", "Writing code", "Storytelling"], answer: "Conversation simulation" },
+            { question: "Which prompt helps write a poem?", options: ["Poetry prompt", "Fact-finding", "Code generation"], answer: "Poetry prompt" },
+            { question: "Which prompt helps generate code?", options: ["Code generation", "Brainstorming", "Translation"], answer: "Code generation" },
+            { question: "Which prompt analyzes cause-and-effect?", options: ["Analytical prompt", "Storytelling", "Summarization"], answer: "Analytical prompt" },
+            { question: "Which prompt helps make decisions?", options: ["Decisional prompt", "Poetry prompt", "Simulation prompt"], answer: "Decisional prompt" },
+            { question: "Which prompt translates text?", options: ["Translation prompt", "Code generation", "Summarization"], answer: "Translation prompt" },
+            { question: "Which prompt describes an algorithm?", options: ["Algorithm prompt", "Poetry prompt", "Fact-finding"], answer: "Algorithm prompt" },
+            { question: "Which prompt summarizes text?", options: ["Summarization prompt", "Translation prompt", "Simulation prompt"], answer: "Summarization prompt" },
+            { question: "Which prompt explains concepts?", options: ["Explanation prompt", "Brainstorming", "Code generation"], answer: "Explanation prompt" }
         ]
     };
 
